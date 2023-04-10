@@ -9,7 +9,7 @@ public class ColorsManager : MonoBehaviour
 
     //affeted Refrences
     private Camera cam;
-    private Sprite[] lives;
+    private GameObject[] lives;
 
     public Sprite Logo;
     public Sprite progressBar;
@@ -30,7 +30,7 @@ public class ColorsManager : MonoBehaviour
         UpdateColorScheme();
     }
 
-    void NextColorSceme()
+    public void NextColorSceme()
     {
         currentColorScheme++;
         if (currentColorScheme >= colorScemes.Length)
@@ -46,6 +46,11 @@ public class ColorsManager : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             buttonImages[i].color = GetCurrentColorScheme().dieColors[i];
+        }
+
+        foreach(GameObject life in lives)
+        {
+            life.GetComponent<SpriteRenderer>().color = GetCurrentColorScheme().textHilightColor;
         }
     }
 

@@ -4,7 +4,8 @@ public class GameplayManager : MonoBehaviour
 {
     public Die activeDie;
 
-    public Sprite[] lives;
+    public GameObject[] lives;
+    public GameObject[] menuButtons;
 
     private int currentScore;
     private int currentChain;
@@ -17,6 +18,16 @@ public class GameplayManager : MonoBehaviour
         currentScore = 0;
         currentChain = 0;
         currentHighestChain = 0;
+
+        foreach(GameObject menuButton in menuButtons)
+        {
+            menuButton.SetActive(false);
+        }
+
+        foreach (GameObject life in lives)
+        {
+            life.SetActive(true);
+        }
     }
 
     public bool CompareDie(Die dieToCompare)
