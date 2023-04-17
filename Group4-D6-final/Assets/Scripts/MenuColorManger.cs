@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ColorsManager : MonoBehaviour
+public class MenuColorManger : MonoBehaviour
 {
     //color scemes
     public ColorScheme[] colorScemes;
@@ -9,17 +9,14 @@ public class ColorsManager : MonoBehaviour
 
     //affeted Refrences
     private Camera cam;
-    private GameObject[] lives;
 
     public Sprite Logo;
     public Sprite progressBar;
-    public Sprite diceSlot;
     public Image[] buttonImages;
 
     private void Awake()
     {
         cam = Camera.main;
-        lives = GetComponent<GameplayManager>().lives;
         SetRandomColorSceme();
     }
 
@@ -41,16 +38,13 @@ public class ColorsManager : MonoBehaviour
 
     void UpdateColorScheme()
     {
+        Values.activeColorSceme = colorScemes[currentColorScheme];
+
         cam.backgroundColor = colorScemes[currentColorScheme].backgroundColor;
 
         for (int i = 0; i < 5; i++)
         {
             buttonImages[i].color = GetCurrentColorScheme().dieColors[i];
-        }
-
-        foreach(GameObject life in lives)
-        {
-            life.GetComponent<SpriteRenderer>().color = GetCurrentColorScheme().textHilightColor;
         }
     }
 

@@ -5,7 +5,6 @@ public class GameplayManager : MonoBehaviour
     public Die activeDie;
 
     public GameObject[] lives;
-    public GameObject[] menuButtons;
 
     private int currentScore;
     private int currentChain;
@@ -14,20 +13,10 @@ public class GameplayManager : MonoBehaviour
 
     public void StartGame()
     {
-        Score.gamesPlayed ++;
+        Values.gamesPlayed ++;
         currentScore = 0;
         currentChain = 0;
         currentHighestChain = 0;
-
-        foreach(GameObject menuButton in menuButtons)
-        {
-            menuButton.SetActive(false);
-        }
-
-        foreach (GameObject life in lives)
-        {
-            life.SetActive(true);
-        }
     }
 
     public bool CompareDie(Die dieToCompare)
@@ -68,15 +57,15 @@ public class GameplayManager : MonoBehaviour
     public void EndGame(bool wonGame)
     {
         if (wonGame)
-            Score.gamesWon++;
+            Values.gamesWon++;
         else
-            Score.gamesLost++;
+            Values.gamesLost++;
 
-        Score.winPercent = (int) Mathf.Round(Score.gamesLost / Score.gamesWon * 100);
+        Values.winPercent = (int) Mathf.Round(Values.gamesLost / Values.gamesWon * 100);
 
-        if (currentScore > Score.highScore)
-            Score.highScore = currentScore;
-        if (currentHighestChain > Score.bestChain)
-            Score.bestChain = currentHighestChain;
+        if (currentScore > Values.highScore)
+            Values.highScore = currentScore;
+        if (currentHighestChain > Values.bestChain)
+            Values.bestChain = currentHighestChain;
     }
 }

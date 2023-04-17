@@ -1,5 +1,7 @@
-public static class Score
+public static class Values
 {
+    public static ColorScheme activeColorSceme;
+
     public static int gamesPlayed;
     public static int gamesWon;
     public static int gamesLost;
